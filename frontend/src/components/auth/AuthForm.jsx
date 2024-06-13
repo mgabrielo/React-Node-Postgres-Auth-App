@@ -84,7 +84,9 @@ const AuthForm = ({
           size="small"
           fullWidth
           helperText={
-            Boolean(errors.password) ? "Password Field is Required" : ""
+            Boolean(errors.password)
+              ? "Password Field is Required and Must be Up to Six Characters"
+              : ""
           }
           error={Boolean(errors.password)}
           {...register("password", { required: true, minLength: 6 })}
