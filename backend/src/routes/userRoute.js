@@ -6,9 +6,9 @@ import { loginValidation, registerValidation } from '../utils/validations.js';
 
 const router = Router();
 
-router.get('', authVerify, getUserDetails)
 router.post('/register', registerValidation, registerUser)
 router.post('/login', loginValidation, loginUser)
-router.get('/logout', logOutUser)
+router.get('', authVerify, getUserDetails)
+router.get('/logout', authVerify, logOutUser)
 
 export default router;

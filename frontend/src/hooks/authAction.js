@@ -58,7 +58,7 @@ export const authAction = () => {
         try {
             signOutUserStart();
             await axios
-                .get(`${BASE_URL}/user/logout`)
+                .get(`${BASE_URL}/user/logout`, { withCredentials: true })
                 .then((res) => {
                     if (res.status == 200) {
                         dispatch(signOutUserSuccess());
