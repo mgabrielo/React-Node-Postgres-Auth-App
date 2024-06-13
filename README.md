@@ -16,7 +16,7 @@ This procedeure should start up the backend application:
 
 This procedeure should start up the frontend application:
 
-- In the frontend directory, if not available; create a .env file and add VITE_API_URL environment variable that communicates with your node server (for example: VITE_API_URL="http://localhost:3000/api")
+- In the frontend directory, if not available; create a .env file and add VITE_API_URL environment variable that communicates with your node server (for example: VITE_API_URL="http://localhost:3000/")
 
 - Navigate to the frontend directory on the command line using the command: cd frontend
 
