@@ -1,9 +1,9 @@
+import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { clearAuthError } from "../../redux/user/userSlice";
 
 const AuthLayout = ({
