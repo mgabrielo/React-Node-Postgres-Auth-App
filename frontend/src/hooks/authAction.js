@@ -35,7 +35,7 @@ export const authAction = () => {
         try {
             dispatch(signUpStart());
             await axios
-                .post(`${BASE_URL}/user/register`, data)
+                .post(`${BASE_URL}/user/register`, data, { withCredentials: true })
                 .then((res) => {
                     if (res.data?.user) {
                         dispatch(signUpSuccess(res.data.user));

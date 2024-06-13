@@ -10,23 +10,32 @@ export const registerUser = async (req, res) => {
         return res.status(400).json({ message: errors.array() });
     }
     try {
-        const { username, email, password } = req.body
+        const { username, email, password: reqPassword } = req.body
         const exsitingUser = await pool.query(getUserByEmail, [email])
         if (exsitingUser?.rows?.length === 0) {
             const genSalt = await bcrypt.genSalt(10)
-            const hashedPassword = await bcrypt.hash(password, genSalt)
+            const hashedPassword = await bcrypt.hash(reqPassword, genSalt)
             const newUser = await pool.query(getRegisterUser, [username, email, hashedPassword]);
             const newUserId = newUser?.rows[0].id
-            if (newUserId) {
-                const token = generateJWT(newUserId)
-                const { id, password, ...responseUser } = newUser?.rows[0]
-                return res.status(200).cookie('auth_token', token, { httpOnly: true }).json({
-                    user: responseUser,
-                    message: 'User Registered Successfully'
-                })
-            } else {
-                return res.status(404).json({ message: 'user does not exist' })
+            if (!newUserId) {
+                return res.status(400).json({ message: 'user could not be created' })
             }
+            const token = generateJWT(newUserId)
+            if (newUserId && !req.cookies.auth_token) {
+                res.cookie("auth_token", token, { httpOnly: true })
+            } else if (newUserId && req.cookies.auth_token) {
+                res.clearCookie('auth_token', {
+                    httpOnly: true,
+                });
+                const token = generateJWT(newUserId)
+                res.cookie("auth_token", token, { httpOnly: true })
+            }
+            const { id, password, ...responseUser } = newUser?.rows[0]
+            res.status(200).json({
+                user: responseUser,
+                message: 'User Registered Successfully',
+            })
+
         } else {
             return res.status(409).json({ message: 'user already exist' })
         }

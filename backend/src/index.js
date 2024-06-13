@@ -12,8 +12,8 @@ async function startServer() {
     if (!PORT || !FRONTEND_URL) {
         console.error('PORT and FRONTEND_URL values must not be empty for environment variables')
     }
-    app.use(cookieParser());
     app.use(express.json());
+    app.use(cookieParser());
     app.use(express.urlencoded({ extended: true }))
     app.use(cors({
         origin: FRONTEND_URL,
