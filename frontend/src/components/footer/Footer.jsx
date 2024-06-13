@@ -16,7 +16,7 @@ const Footer = () => {
         color: "#fff",
         flexDirection: { xs: "column", sm: "column", md: "row", lg: "row" },
         overflowX: "hidden",
-        gap: { sm: 2, md: 5, lg: 10 },
+        gap: { xs: 2, sm: 2, md: 5, lg: 10 },
       }}
     >
       <Typography>CopyRight @ PostgresAuth</Typography>
