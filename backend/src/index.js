@@ -19,7 +19,7 @@ async function startServer() {
         origin: FRONTEND_URL,
         credentials: true,
     }));
-    app.use('/api/user', userRoute)
+    app.use('/user', userRoute)
     app.listen(PORT, () => {
         console.log(`Server running on ${PORT}`)
     })

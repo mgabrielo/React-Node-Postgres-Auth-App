@@ -1,5 +1,5 @@
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
-import Box from "@mui/material/node/Box";
+import Box from "@mui/material/Box";
 import React from "react";
 import { drawerItems } from "./DrawerItems";
 
