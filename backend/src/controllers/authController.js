@@ -20,7 +20,7 @@ export const registerUser = async (req, res) => {
             if (newUserId) {
                 const token = generateJWT(newUserId)
                 const { id, password, ...responseUser } = newUser?.rows[0]
-                return res.status(200).cookie('auth_token', token).json({
+                return res.status(200).cookie('auth_token', token, { httpOnly: true }).json({
                     user: responseUser,
                     message: 'User Registered Successfully'
                 })
@@ -55,7 +55,7 @@ export const loginUser = async (req, res) => {
             if (validPassword) {
                 const token = generateJWT(exsitingUser?.rows[0].id)
                 const { id, password, ...responseUser } = exsitingUser?.rows[0]
-                res.status(200).cookie('auth_token', token).json({
+                res.status(200).cookie('auth_token', token, { httpOnly: true }).json({
                     message: 'Login Successful',
                     user: responseUser
                 })
@@ -74,7 +74,7 @@ export const logOutUser = async (req, res) => {
     try {
         if (req.cookies.auth_token) {
             res.clearCookie('auth_token', {
-                path: '/'
+                httpOnly: true,
             });
             return res.status(200).json({ message: 'User Signed out Successfully' });
         } else {
