@@ -81,6 +81,9 @@ export const loginUser = async (req, res) => {
 
 export const logOutUser = async (req, res) => {
     try {
+        if (!req.userId) {
+            return res.status(401).json({ message: 'Not Authorized' })
+        }
         if (req.cookies.auth_token) {
             res.clearCookie('auth_token', {
                 httpOnly: true,
