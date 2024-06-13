@@ -14,7 +14,7 @@ const Footer = () => {
         bgcolor: "#1976d2",
         fontSize: 15,
         color: "#fff",
-        flexDirection: { sm: "column", md: "row", lg: "row" },
+        flexDirection: { xs: "column", sm: "column", md: "row", lg: "row" },
         overflowX: "hidden",
         gap: { sm: 2, md: 5, lg: 10 },
       }}
