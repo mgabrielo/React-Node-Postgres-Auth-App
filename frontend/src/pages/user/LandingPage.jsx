@@ -5,12 +5,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Spinner from "../../components/spinner/Spinner";
+import { clearAuthError } from "../../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
 const LandingPage = () => {
   const { currentUser, error, loading, fetchUser } = getUser();
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (!currentUser) {
+      dispatch(clearAuthError());
       fetchUser();
     }
   }, [currentUser]);
@@ -38,7 +41,7 @@ const LandingPage = () => {
         }}
       >
         <CardContent sx={{ gap: 2 }}>
-          {error && (
+          {error && !currentUser && (
             <Typography variant="h6" sx={{ color: "red", mb: 2 }}>
               {error || "Error Getting User Details"}
             </Typography>

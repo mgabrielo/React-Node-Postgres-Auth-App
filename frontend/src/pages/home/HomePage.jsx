@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../../hooks/getUser";
+import { clearAuthError } from "../../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { currentUser } = getUser();
+  const { currentUser, fetchUser } = getUser();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!currentUser) {
+      dispatch(clearAuthError());
+      fetchUser();
+    }
+  }, [currentUser]);
   return (
     <Grid
       container

@@ -41,6 +41,7 @@ const userSlice = createSlice({
         clearAuthError: (state) => {
             state.authError = null
             state.currentUser = null
+            state.error = null
         },
         saveUserDetailsStart: (state) => {
             state.loading = true

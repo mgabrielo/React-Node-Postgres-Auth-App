@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link, useNavigate } from "react-router-dom";
 import { clearAuthError } from "../../redux/user/userSlice";
+import { getUser } from "../../hooks/getUser";
 
 const AuthLayout = ({
   children,
@@ -18,6 +19,7 @@ const AuthLayout = ({
   const navigate = useNavigate();
   const { authError, currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const { fetchUser } = getUser();
   useEffect(() => {
     if (authError) {
       setTimeout(() => {

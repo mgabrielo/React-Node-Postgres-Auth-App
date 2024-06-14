@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import AuthLayout from "../../components/auth/AuthLayout";
 import AuthForm from "../../components/auth/AuthForm";
 import { authAction } from "../../hooks/authAction";
-
+import { useNavigate } from "react-router-dom";
 const Register = () => {
+  const navigate = useNavigate();
   const { handleRegisterAuth, checkError, setCheckError, error, loading } =
     authAction();
   const {
@@ -28,6 +29,7 @@ const Register = () => {
   const handleRegister = async (data, e) => {
     e.preventDefault();
     await handleRegisterAuth(data).then(() => {
+      navigate("/landing-page");
       reset({});
     });
   };

@@ -8,7 +8,7 @@ export const authVerify = (req, res, next) => {
         }
         jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
             if (err) {
-                return res.status(404).json({ message: 'No Found Token' })
+                return res.status(404).json({ message: 'No Token Found' })
             }
             const userId = user.id;
             req.userId = userId

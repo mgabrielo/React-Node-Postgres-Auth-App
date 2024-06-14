@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import AuthLayout from "../../components/auth/AuthLayout";
 import AuthForm from "../../components/auth/AuthForm";
 import { authAction } from "../../hooks/authAction";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { handleLoginAuth, checkError, setCheckError, authError } =
     authAction();
 
@@ -22,6 +24,7 @@ const Login = () => {
 
   const handleLogin = async (data) => {
     await handleLoginAuth(data).then(() => {
+      navigate("/landing-page");
       reset({});
     });
   };

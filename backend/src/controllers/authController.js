@@ -28,7 +28,10 @@ export const registerUser = async (req, res) => {
                     httpOnly: true,
                 });
                 const token = generateJWT(newUserId)
-                res.cookie("auth_token", token, { httpOnly: true })
+                res.cookie("auth_token", token, {
+                    httpOnly: true,
+                    maxAge: 60 * 60 * 1000,
+                })
             }
             const { id, password, ...responseUser } = newUser?.rows[0]
             res.status(200).json({
@@ -64,7 +67,10 @@ export const loginUser = async (req, res) => {
             if (validPassword) {
                 const token = generateJWT(exsitingUser?.rows[0].id)
                 const { id, password, ...responseUser } = exsitingUser?.rows[0]
-                res.status(200).cookie('auth_token', token, { httpOnly: true }).json({
+                res.status(200).cookie('auth_token', token, {
+                    httpOnly: true,
+                    maxAge: 60 * 60 * 1000,
+                }).json({
                     message: 'Login Successful',
                     user: responseUser
                 })
@@ -81,17 +87,12 @@ export const loginUser = async (req, res) => {
 
 export const logOutUser = async (req, res) => {
     try {
-        if (!req.userId) {
-            return res.status(401).json({ message: 'Not Authorized' })
-        }
         if (req.cookies.auth_token) {
             res.clearCookie('auth_token', {
                 httpOnly: true,
             });
-            return res.status(200).json({ message: 'User Signed out Successfully' });
-        } else {
-            return res.status(400).json({ message: 'No auth_token cookie to clear' });
         }
+        return res.status(200).json({ message: 'User Signed out Successfully' });
     } catch (error) {
         res.status(500).json({ error: error?.message })
     }
