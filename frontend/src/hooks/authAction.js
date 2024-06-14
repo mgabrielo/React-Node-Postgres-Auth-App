@@ -85,16 +85,15 @@ export const authAction = () => {
         }
     }
 
-
     return {
         loading,
         currentUser,
+        isAuthenticated,
         handleLoginAuth,
         authError,
         checkError,
         setCheckError,
         handleRegisterAuth,
         handleLogoutAuth,
-        isAuthenticated
     };
 };

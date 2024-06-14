@@ -98,7 +98,6 @@ export const {
     signOutUserSuccess,
     signOutUserFailure,
     clearAuthError,
-    isAuthenticated,
 } = userSlice.actions
 
 export default userSlice.reducer
