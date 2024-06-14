@@ -1,14 +1,24 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/utils";
 import { useDispatch, useSelector } from "react-redux";
-import { clearAuthError, signInFailure, signInStart, signInSuccess, signOutUserFailure, signOutUserStart, signOutUserSuccess, signUpFailure, signUpStart, signUpSuccess } from "../redux/user/userSlice";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { persistor } from "../redux/store";
+import {
+    signInFailure,
+    signInStart,
+    signInSuccess,
+    signOutUserFailure,
+    signOutUserStart,
+    signOutUserSuccess,
+    signUpFailure,
+    signUpStart,
+    signUpSuccess,
+} from "../redux/user/userSlice";
 
 export const authAction = () => {
     const [checkError, setCheckError] = useState(false);
-    const { loading, currentUser, authError } = useSelector((state) => state.user)
+    const { loading, currentUser, authError, isAuthenticated } = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
     const handleLoginAuth = async (data) => {
@@ -18,7 +28,6 @@ export const authAction = () => {
                 .post(`${BASE_URL}/user/login`, data, { withCredentials: true })
                 .then((res) => {
                     if (res.status == 200 && res.data?.user) {
-                        dispatch(clearAuthError())
                         dispatch(signInSuccess(res.data.user));
                         toast.success(res.data.message);
                     }
@@ -85,6 +94,7 @@ export const authAction = () => {
         checkError,
         setCheckError,
         handleRegisterAuth,
-        handleLogoutAuth
+        handleLogoutAuth,
+        isAuthenticated
     };
 };

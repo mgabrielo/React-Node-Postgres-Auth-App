@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link, useNavigate } from "react-router-dom";
 import { clearAuthError } from "../../redux/user/userSlice";
-import { getUser } from "../../hooks/getUser";
 
 const AuthLayout = ({
   children,
@@ -17,9 +16,10 @@ const AuthLayout = ({
   setCheckError,
 }) => {
   const navigate = useNavigate();
-  const { authError, currentUser } = useSelector((state) => state.user);
+  const { authError, currentUser, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
-  const { fetchUser } = getUser();
   useEffect(() => {
     if (authError) {
       setTimeout(() => {
@@ -30,10 +30,10 @@ const AuthLayout = ({
   }, [authError]);
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && isAuthenticated) {
       navigate("/landing-page");
     }
-  }, [currentUser]);
+  }, [currentUser, isAuthenticated]);
 
   return (
     <Grid

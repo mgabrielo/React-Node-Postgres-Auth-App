@@ -5,6 +5,7 @@ const initialState = {
     error: null,
     authError: null,
     loading: false,
+    isAuthenticated: false,
 }
 
 const userSlice = createSlice({
@@ -14,29 +15,35 @@ const userSlice = createSlice({
         signUpStart: (state) => {
             state.loading = true
             state.authError = null
+            state.isAuthenticated = false
         },
         signUpSuccess: (state, action) => {
             state.currentUser = action.payload
             state.loading = false
             state.authError = null
+            state.isAuthenticated = true
         },
         signUpFailure: (state, action) => {
             state.authError = action.payload
             state.loading = false
+            state.isAuthenticated = false
         },
         signInStart: (state) => {
             state.loading = true
             state.authError = null
+            state.isAuthenticated = false
         },
         signInSuccess: (state, action) => {
             state.currentUser = action.payload
             state.loading = false
             state.authError = null
+            state.isAuthenticated = true
         },
         signInFailure: (state, action) => {
             state.authError = action.payload
             state.loading = false
             state.currentUser = null
+            state.isAuthenticated = false
         },
         clearAuthError: (state) => {
             state.authError = null
@@ -51,10 +58,12 @@ const userSlice = createSlice({
             state.currentUser = action.payload
             state.loading = false
             state.error = null
+            state.isAuthenticated = true
         },
         saveUserDetailsFailure: (state, action) => {
             state.error = action.payload
             state.loading = false
+            state.isAuthenticated = false
         },
         signOutUserStart: (state) => {
             state.loading = true
@@ -65,10 +74,12 @@ const userSlice = createSlice({
             state.loading = false
             state.authError = null
             state.error = null
+            state.isAuthenticated = false
         },
         signOutUserFailure: (state, action) => {
             state.authError = action.payload
             state.loading = false
+            state.isAuthenticated = false
         },
     }
 });
@@ -86,7 +97,8 @@ export const {
     signOutUserStart,
     signOutUserSuccess,
     signOutUserFailure,
-    clearAuthError
+    clearAuthError,
+    isAuthenticated,
 } = userSlice.actions
 
 export default userSlice.reducer

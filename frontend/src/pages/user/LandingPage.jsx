@@ -9,8 +9,9 @@ import { clearAuthError } from "../../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
 const LandingPage = () => {
-  const { currentUser, error, loading, fetchUser } = getUser();
+  const { currentUser, error, loading, fetchUser, isAuthenticated } = getUser();
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!currentUser) {
       dispatch(clearAuthError());
@@ -41,7 +42,7 @@ const LandingPage = () => {
         }}
       >
         <CardContent sx={{ gap: 2 }}>
-          {error && !currentUser && (
+          {error && !isAuthenticated && (
             <Typography variant="h6" sx={{ color: "red", mb: 2 }}>
               {error || "Error Getting User Details"}
             </Typography>
