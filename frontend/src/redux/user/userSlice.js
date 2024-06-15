@@ -57,11 +57,9 @@ const userSlice = createSlice({
         saveUserDetailsSuccess: (state, action) => {
             state.currentUser = action.payload
             state.loading = false
-            state.error = null
             state.isAuthenticated = true
         },
         saveUserDetailsFailure: (state, action) => {
-            state.error = action.payload
             state.loading = false
             state.isAuthenticated = false
         },

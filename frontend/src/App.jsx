@@ -13,7 +13,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Toaster position="bottom-right" />
+      <Toaster
+        position="bottom-right"
+        toastOptions={{ style: { backgroundColor: "#000", color: "#fff" } }}
+      />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
