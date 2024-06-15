@@ -4,24 +4,16 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Spinner from "../../components/spinner/Spinner";
-import { clearAuthError } from "../../redux/user/userSlice";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const LandingPage = () => {
-  const { currentUser, error, loading, fetchUser, isAuthenticated } = getUser();
-  const dispatch = useDispatch();
-
+  const { currentUser } = useSelector((state) => state.user);
+  const { isAuthenticated, fetchUser, error } = getUser();
   useEffect(() => {
     if (!currentUser) {
-      dispatch(clearAuthError());
       fetchUser();
     }
   }, [currentUser]);
-
-  if (loading) {
-    return <Spinner />;
-  }
 
   return (
     <Box
@@ -42,7 +34,7 @@ const LandingPage = () => {
         }}
       >
         <CardContent sx={{ gap: 2 }}>
-          {error && !isAuthenticated && (
+          {!isAuthenticated && (
             <Typography variant="h6" sx={{ color: "red", mb: 2 }}>
               {error || "Error Getting User Details"}
             </Typography>
