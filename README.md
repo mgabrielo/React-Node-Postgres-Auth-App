@@ -1,6 +1,6 @@
 # Postgres Auth Project built with React Vite, Material UI, Redux ToolKit, Node js, Express js, JWT, and PostgreSQL
 
-# 1. Back-end :s
+# 1. Back-end :
 
 This procedeure should start up the backend application:
 
