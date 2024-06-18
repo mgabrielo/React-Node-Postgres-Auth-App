@@ -2,11 +2,11 @@ import 'dotenv/config';
 import pg from 'pg'
 import { checkDbQuery, createDbQuery } from '../queries/dbMigrationQueries.js'
 
-const adminDBName = process.env.POSTGRES_ADMIN_DB_NAME;
-const adminDBUser = process.env.POSTGRES_ADMIN_DB_USER
-const adminDBHost = process.env.POSTGRES_ADMIN_HOST
-const adminDBPORT = process.env.POSTGRES_ADMIN_PORT
-const adminDBPassword = process.env.POSTGRES_ADMIN_PASSWORD
+export const adminDBName = process.env.POSTGRES_ADMIN_DB_NAME;
+export const adminDBUser = process.env.POSTGRES_ADMIN_DB_USER
+export const adminDBHost = process.env.POSTGRES_ADMIN_HOST
+export const adminDBPORT = process.env.POSTGRES_ADMIN_PORT
+export const adminDBPassword = process.env.POSTGRES_ADMIN_PASSWORD
 export const dbName = process.env.POSTGRES_DB_NAME;
 export const dbPassword = process.env.POSTGRES_DB_PASSWORD;
 export const dbPort = process.env.POSTGRES_DB_PORT;

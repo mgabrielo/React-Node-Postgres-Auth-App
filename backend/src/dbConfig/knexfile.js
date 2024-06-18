@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { missingVariables } from './create-db.js';
+import { adminDBPassword, adminDBUser, dbName, dbUser, missingVariables } from './create-db.js';
 
 if (missingVariables.length > 0) {
     missingVariables.forEach(({ name }) => {
@@ -13,9 +13,9 @@ const config = {
     development: {
         client: 'postgresql',
         connection: {
-            database: 'auth_db',
-            user: 'postgres',
-            password: 'scott'
+            database: dbName,
+            user: adminDBUser,
+            password: adminDBPassword
         },
         pool: {
             min: 2,
