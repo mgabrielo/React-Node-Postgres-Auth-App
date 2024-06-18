@@ -7,7 +7,7 @@ import { Controller } from "react-hook-form";
 
 const AuthForm = ({
   title,
-  onClick,
+  onSubmit,
   isSubmitting,
   register,
   errors,
@@ -15,7 +15,15 @@ const AuthForm = ({
   password,
 }) => {
   return (
-    <>
+    <form
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: 20,
+      }}
+      onSubmit={onSubmit}
+    >
       {title === "Register" && (
         <Box
           sx={{
@@ -135,17 +143,16 @@ const AuthForm = ({
         }}
       >
         <Button
-          type="button"
+          type="submit"
           variant="contained"
           color="primary"
           disabled={isSubmitting}
-          onClick={onClick}
           sx={{ textTransform: "capitalize", width: "90%" }}
         >
           {title}
         </Button>
       </Box>
-    </>
+    </form>
   );
 };
 

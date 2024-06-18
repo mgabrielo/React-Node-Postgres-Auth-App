@@ -13,27 +13,6 @@ const dbName = process.env.POSTGRES_DB_NAME;
 const dbPort = process.env.POSTGRES_DB_PORT;
 const dbHost = process.env.POSTGRES_DB_HOST
 
-const envVariables = [
-    { name: 'POSTGRES_DB_NAME', value: dbName },
-    { name: 'POSTGRES_DB_PASSWORD', value: dbPassword },
-    { name: 'POSTGRES_DB_PORT', value: dbPort },
-    { name: 'POSTGRES_DB_USER', value: dbUser },
-    { name: 'POSTGRES_DB_HOST', value: dbHost },
-    { name: 'POSTGRES_ADMIN_DB_NAME', value: adminDBName },
-    { name: 'POSTGRES_ADMIN_PASSWORD', value: adminDBPassword },
-    { name: 'POSTGRES_ADMIN_PORT', value: adminDBPORT },
-    { name: 'POSTGRES_ADMIN_DB_USER', value: adminDBUser },
-    { name: 'POSTGRES_ADMIN_HOST', value: adminDBHost }
-];
-
-const missingVariables = envVariables.filter(({ value }) => !value);
-
-if (missingVariables.length > 0) {
-    missingVariables.forEach(({ name }) => {
-        console.error(`Error creating database: Value for the environment variable ${name} is not provided.`);
-    });
-    process.exit(1);
-}
 
 async function createDatabase() {
     const adminPool = new pg.Pool({

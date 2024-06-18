@@ -47,7 +47,7 @@ const Register = () => {
     >
       <AuthForm
         title={"Register"}
-        onClick={handleSubmit((data, e) => handleRegister(data, e))}
+        onSubmit={handleSubmit((data, e) => handleRegister(data, e))}
         isSubmitting={isSubmitting}
         register={register}
         errors={errors}

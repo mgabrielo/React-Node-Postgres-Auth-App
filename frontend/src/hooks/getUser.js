@@ -24,7 +24,7 @@ export const getUser = () => {
     } catch (err) {
       dispatch(clearAuthError());
       dispatch(saveUserDetailsFailure('Something Went Wrong'));
-      toast.error('Something Went Wrong')
+      toast.error('Please Log In to Continue')
     }
   };
   return { error, loading, currentUser, fetchUser, isAuthenticated };

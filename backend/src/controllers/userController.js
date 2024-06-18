@@ -1,9 +1,8 @@
-import pool from "../database/db.js"
+import pool from "../dbConfig/create-db.js"
 import { getUserById } from "../queries/authQueries.js"
 
 export const getUserDetails = async (req, res) => {
     const userId = req.userId
-
     try {
         if (!userId) {
             res.status(401).json({ message: 'Not Authorized Access' })
@@ -20,5 +19,4 @@ export const getUserDetails = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error?.message })
     }
-
 }

@@ -40,7 +40,7 @@ const Login = () => {
     >
       <AuthForm
         title={"Login"}
-        onClick={handleSubmit((data, e) => handleLogin(data, e))}
+        onSubmit={handleSubmit((data, e) => handleLogin(data, e))}
         isSubmitting={isSubmitting}
         register={register}
         errors={errors}

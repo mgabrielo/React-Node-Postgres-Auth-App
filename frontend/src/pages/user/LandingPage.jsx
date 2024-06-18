@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 const LandingPage = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { isAuthenticated, fetchUser, error } = getUser();
+  
   useEffect(() => {
     if (!currentUser) {
       fetchUser();

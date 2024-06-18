@@ -1,4 +1,4 @@
-import pool from "../database/db.js";
+import pool from "../dbConfig/create-db.js";
 import { getRegisterUser, getUserByEmail } from "../queries/authQueries.js";
 import { generateJWT } from "../utils/generateJWT.js";
 import bcrypt from 'bcrypt'
@@ -11,7 +11,9 @@ export const registerUser = async (req, res) => {
     }
     try {
         const { username, email, password: reqPassword } = req.body
-        const exsitingUser = await pool.query(getUserByEmail, [email])
+        const normalizedEmail = email.toLowerCase();
+        const exsitingUser = await pool.query(getUserByEmail, [normalizedEmail])
+
         if (exsitingUser?.rows?.length === 0) {
             const genSalt = await bcrypt.genSalt(10)
             const hashedPassword = await bcrypt.hash(reqPassword, genSalt)
@@ -58,7 +60,8 @@ export const loginUser = async (req, res) => {
 
     try {
         const { email, password } = req.body
-        const exsitingUser = await pool.query(getUserByEmail, [email])
+        const normalizedEmail = email.toLowerCase();
+        const exsitingUser = await pool.query(getUserByEmail, [normalizedEmail])
 
         if (exsitingUser?.rows?.length === 0) {
             res.status(401).json({ msg: 'password or email is incorrect' })
