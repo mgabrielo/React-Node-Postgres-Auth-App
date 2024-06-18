@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { adminDBPassword, adminDBUser, dbName, dbUser, missingVariables } from './create-db.js';
+import { adminDBPassword, adminDBUser, dbName, missingVariables } from './create-db.js';
 
 if (missingVariables.length > 0) {
     missingVariables.forEach(({ name }) => {
