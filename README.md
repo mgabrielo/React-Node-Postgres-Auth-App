@@ -10,7 +10,7 @@ This procedeure should start up the backend application:
 
 - Navigate to the backend directory on your terminal using the command: cd backend
 
-- Open a terminal in your backend directory, and run the command: " npm run create-db " to create your database
+- Open a terminal in your backend directory, and run the command: " npm run get-db " to create your database
 
 - Next run this command in your backend terminal: " npm run migrate " to start database migration
 

@@ -5,8 +5,7 @@ import userRoute from './routes/userRoute.js'
 import 'dotenv/config'
 
 const app = express()
-const FRONTEND_URL = process.env.FRONTEND_URL
-const PORT = process.env.PORT
+const { FRONTEND_URL, PORT } = process.env
 
 async function startServer() {
     if (!PORT || !FRONTEND_URL) {

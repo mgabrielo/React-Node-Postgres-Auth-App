@@ -1,4 +1,4 @@
-import pool from "../dbConfig/create-db.js"
+import pool from "../dbConfig/get-db.js"
 import { getUserById } from "../queries/authQueries.js"
 
 export const getUserDetails = async (req, res) => {

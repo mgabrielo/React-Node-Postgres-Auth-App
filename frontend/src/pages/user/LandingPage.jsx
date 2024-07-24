@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 const LandingPage = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { isAuthenticated, fetchUser, error } = getUser();
-  
+
   useEffect(() => {
     if (!currentUser) {
       fetchUser();
@@ -29,7 +29,7 @@ const LandingPage = () => {
     >
       <Card
         sx={{
-          width: { sm: 300, md: 400, lg: 500 },
+          width: { xs: 350, sm: 400, md: 450, lg: 500 },
           bgcolor: "#808080",
           color: "#fff",
         }}

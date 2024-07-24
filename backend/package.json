@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "create-db": "node ./src/dbConfig/create-db.js",
+    "get-db": "node ./src/dbConfig/get-db.js",
     "migrate": "npx knex migrate:latest --knexfile ./knexfile.js",
     "start": "nodemon  src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"

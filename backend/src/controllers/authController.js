@@ -1,4 +1,4 @@
-import pool from "../dbConfig/create-db.js";
+import pool from "../dbConfig/get-db.js";
 import { getRegisterUser, getUserByEmail } from "../queries/authQueries.js";
 import { generateJWT } from "../utils/generateJWT.js";
 import bcrypt from 'bcrypt'

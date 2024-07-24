@@ -51,7 +51,7 @@ const pool = new pg.Pool({
     password: dbPassword,
     port: dbPort
 });
-async function createDatabase() {
+export async function getDatabase() {
     try {
         const client = await adminPool.connect();
         try {
@@ -60,8 +60,9 @@ async function createDatabase() {
             if (res.rows.length === 0) {
                 await client.query(createDbQuery(dbName));
                 console.log(`Database "${dbName}" created successfully.`);
+                return
             } else {
-                console.log(`Database "${dbName}" already exist`)
+                console.log(`Database "${dbName}" already exists`)
                 return
             }
         } catch (err) {
@@ -79,6 +80,6 @@ async function createDatabase() {
     }
 }
 
-createDatabase();
+getDatabase()
 
 export default pool;

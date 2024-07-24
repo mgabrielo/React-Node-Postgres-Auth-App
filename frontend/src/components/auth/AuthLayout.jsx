@@ -61,7 +61,7 @@ const AuthLayout = ({
           }}
         >
           <Typography variant="h3" sx={{ textAlign: "center" }}>
-            Welcome to Post Auth
+            Welcome to Postgres Auth
           </Typography>
           <Typography variant="body">Share the Auth Experience</Typography>
         </Box>

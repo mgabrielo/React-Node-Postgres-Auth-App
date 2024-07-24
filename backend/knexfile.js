@@ -1,12 +1,20 @@
 import 'dotenv/config';
+import { missingVariables, adminDBPassword, adminDBUser, dbName, } from './src/dbConfig/get-db.js';
+
+if (missingVariables.length > 0) {
+    missingVariables.forEach(({ name }) => {
+        console.error(`Error creating database: Value for the environment variable ${name} is not provided.`);
+    });
+    process.exit(1);
+}
 
 const config = {
     development: {
         client: 'postgresql',
         connection: {
-            database: process.env.POSTGRES_DB_NAME,
-            user: process.env.POSTGRES_ADMIN_DB_USER,
-            password: process.env.POSTGRES_ADMIN_PASSWORD
+            database: dbName,
+            user: adminDBUser,
+            password: adminDBPassword
         },
         pool: {
             min: 2,

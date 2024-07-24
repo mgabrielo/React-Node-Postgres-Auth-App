@@ -36,7 +36,7 @@ const Register = () => {
 
   return (
     <AuthLayout
-      authSwitchDesc={"Already Got An Account..."}
+      authSwitchDesc={"Already Got An Account...?"}
       authSwitchLabel={"Login"}
       authSwitchLink={"/login"}
       title={"Register"}
